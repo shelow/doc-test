@@ -11,6 +11,7 @@ import fr.slm.doc.avenue.test.domain.values.Post;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -37,14 +38,14 @@ public class DownloadSteps implements En {
 
         When("^trying to download all posts from jsonplaceholder and return limited elements$", () -> {
             attemptLoadPosts.toTry =  () ->
-                    attemptLoadPosts.foundPosts = (LinkedHashSet<Post>) postsLoader.load(givenParams.limit);
+                    attemptLoadPosts.foundPosts = postsLoader.load(givenParams.limit);
         });
 
         When("^the downloading \"([^\"]*)\"$", (String operationResult) -> {
             boolean success = "success".equals(operationResult);
             ((LocalPostService) postsService).shouldSuccess(success);
             attemptLoadPosts.error = tryer(attemptLoadPosts.toTry);
-            if(success){
+            if(!success){
                 assertThat(attemptLoadPosts.error, is(instanceOf(LoadingPostsException.class)));
             } else {
                 assertThat(attemptLoadPosts.error, is(nullValue()));
@@ -91,7 +92,7 @@ public class DownloadSteps implements En {
 
     private class AttemptLoadPosts {
         TryerFunc toTry;
-        LinkedHashSet<Post> foundPosts;
+        Set<Post> foundPosts;
         Exception error;
     }
 }
