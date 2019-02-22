@@ -13,7 +13,7 @@ Feature: downloading and return firsts posts
 
   Scenario: Download and return N firsts sorted posts
     Given wanted 3 first posts
-    When trying to download all posts from jsonplaceholder
+    When trying to download all posts from jsonplaceholder and return limited elements
     And the downloading "success"
     Then return following elements
       | id  | userId | title       | body          |
@@ -23,7 +23,7 @@ Feature: downloading and return firsts posts
 
   Scenario: Wanted posts is greater than number of received posts
     Given wanted 10 first posts
-    When trying to download all posts from jsonplaceholder
+    When trying to download all posts from jsonplaceholder and return limited elements
     And the downloading "success"
     Then return following elements
       | id  | userId | title       | body          |
@@ -36,7 +36,7 @@ Feature: downloading and return firsts posts
 
   Scenario: Download fail
     Given wanted 50 first posts
-    When trying to download all posts from jsonplaceholder
+    When trying to download all posts from jsonplaceholder and return limited elements
     And the downloading "fail"
-    Then return error which telling the failure
+    Then return error : loading failure
 
