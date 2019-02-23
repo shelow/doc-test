@@ -9,7 +9,10 @@ import fr.slm.doc.avenue.test.domain.http.clients.PostService;
 import fr.slm.doc.avenue.test.domain.usecases.PostLoader;
 import fr.slm.doc.avenue.test.domain.values.Post;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -53,9 +56,9 @@ public class DownloadSteps implements En {
         Then("^return following elements$", (DataTable expectedElements) -> {
             List<Map<String, String>> mappedExpectedposts = expectedElements.asMaps(String.class, String.class);
             assertThat(mappedExpectedposts.size(), is(equalTo(attemptLoadPosts.foundPosts.size())));
-            LinkedHashSet<Post> expectedPostsSets = new LinkedHashSet<>();
-            mappedExpectedposts.forEach(posts -> addPost(expectedPostsSets, posts));
-            assertThat(attemptLoadPosts.foundPosts, is(equalTo(expectedPostsSets)));
+            List<Post> expectedPosts = new ArrayList<>();
+            mappedExpectedposts.forEach(posts -> addPost(expectedPosts, posts));
+            assertThat(attemptLoadPosts.foundPosts, is(equalTo(expectedPosts)));
         });
 
         Then("^return error : loading failure$", () -> {

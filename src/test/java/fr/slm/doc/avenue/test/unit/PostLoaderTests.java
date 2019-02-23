@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.LinkedHashSet;
 import java.util.List;
 
 import static org.hamcrest.Matchers.contains;
@@ -52,7 +51,6 @@ public class PostLoaderTests {
 
     @Test
     public void load_two_not_sorted_posts() throws PostNotFoundException, LoadingPostsException {
-        LinkedHashSet<Post> posts = new LinkedHashSet<>(Arrays.asList(post2, post1));
         ((LocalPostService) postService).addPosts(Arrays.asList(post2, post1));
 
         List<Post> res = loader.load(2);

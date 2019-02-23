@@ -17,9 +17,9 @@ Feature: downloading and return firsts posts
     And the downloading "success"
     Then return following elements
       | id  | userId | title       | body          |
-      | 2   | 1      | My title 5  | My post body  |
-      | 6   | 1      | My title 7  | My post body  |
-      | 3   | 2      | My title 9  | My post body  |
+      | 1   | 1      | My title 10 | My post body  |
+      | 4   | 2      | My title 11 | My post body  |
+      | 5   | 3      | My title 12 | My post body  |
 
   Scenario: Wanted posts is greater than number of received posts
     Given wanted 10 first posts
@@ -27,12 +27,12 @@ Feature: downloading and return firsts posts
     And the downloading "success"
     Then return following elements
       | id  | userId | title       | body          |
-      | 2   | 1      | My title 5  | My post body  |
-      | 6   | 1      | My title 7  | My post body  |
-      | 3   | 2      | My title 9  | My post body  |
       | 1   | 1      | My title 10 | My post body  |
       | 4   | 2      | My title 11 | My post body  |
       | 5   | 3      | My title 12 | My post body  |
+      | 2   | 1      | My title 5  | My post body  |
+      | 6   | 1      | My title 7  | My post body  |
+      | 3   | 2      | My title 9  | My post body  |
 
   Scenario: Download fail
     Given wanted 50 first posts
