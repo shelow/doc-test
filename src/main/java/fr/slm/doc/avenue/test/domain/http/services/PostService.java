@@ -1,4 +1,4 @@
-package fr.slm.doc.avenue.test.domain.http.clients;
+package fr.slm.doc.avenue.test.domain.http.services;
 
 import fr.slm.doc.avenue.test.domain.exceptions.LoadingPostsException;
 import fr.slm.doc.avenue.test.domain.values.Post;

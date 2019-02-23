@@ -1,10 +1,10 @@
 package fr.slm.doc.avenue.test.unit;
 
-import fr.slm.doc.avenue.test.adapters.http.clients.LocalPostService;
+import fr.slm.doc.avenue.test.adapters.dtos.LocalPostService;
 import fr.slm.doc.avenue.test.domain.exceptions.LoadingPostsException;
 import fr.slm.doc.avenue.test.domain.exceptions.PostNotFoundException;
-import fr.slm.doc.avenue.test.domain.http.clients.PostService;
-import fr.slm.doc.avenue.test.domain.usecases.PostLoader;
+import fr.slm.doc.avenue.test.domain.http.services.PostService;
+import fr.slm.doc.avenue.test.domain.usecase.PostLoader;
 import fr.slm.doc.avenue.test.domain.values.Post;
 import org.junit.Before;
 import org.junit.Test;

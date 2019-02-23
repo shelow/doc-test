@@ -1,7 +1,7 @@
-package fr.slm.doc.avenue.test.adapters.http.clients;
+package fr.slm.doc.avenue.test.adapters.dtos;
 
 import fr.slm.doc.avenue.test.domain.exceptions.LoadingPostsException;
-import fr.slm.doc.avenue.test.domain.http.clients.PostService;
+import fr.slm.doc.avenue.test.domain.http.services.PostService;
 import fr.slm.doc.avenue.test.domain.values.Post;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class LocalPostService implements PostService {
     }
 
     public Optional<List<Post>> loadPosts() throws LoadingPostsException {
-        if(!willSuccess)throw new LoadingPostsException();
+        if(!willSuccess)throw new LoadingPostsException("erreur de chargement");
         return posts.size() == 0 ? Optional.empty() : Optional.of(posts);
     }
 }

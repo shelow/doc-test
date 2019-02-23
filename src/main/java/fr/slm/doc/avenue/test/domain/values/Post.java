@@ -3,6 +3,7 @@ package fr.slm.doc.avenue.test.domain.values;
 import java.util.Objects;
 
 public class Post {
+
     private int id;
     private int userId;
     private String title;
@@ -15,11 +16,11 @@ public class Post {
         this.body = body;
     }
 
-    public String getTitle() {
-        return title;
-    }
+    public int getId() { return id; }
+    public int getUserId() { return userId; }
+    public String getTitle() { return title; }
+    public String getBody() { return body; }
 
-    @Override
     public String toString() {
         return "Post{" +
                 "id=" + id +

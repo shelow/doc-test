@@ -1,8 +1,8 @@
-package fr.slm.doc.avenue.test.domain.usecases;
+package fr.slm.doc.avenue.test.domain.usecase;
 
 import fr.slm.doc.avenue.test.domain.exceptions.LoadingPostsException;
 import fr.slm.doc.avenue.test.domain.exceptions.PostNotFoundException;
-import fr.slm.doc.avenue.test.domain.http.clients.PostService;
+import fr.slm.doc.avenue.test.domain.http.services.PostService;
 import fr.slm.doc.avenue.test.domain.values.Post;
 
 import java.util.List;
