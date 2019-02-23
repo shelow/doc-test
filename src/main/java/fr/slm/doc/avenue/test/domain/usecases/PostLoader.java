@@ -5,10 +5,11 @@ import fr.slm.doc.avenue.test.domain.exceptions.PostNotFoundException;
 import fr.slm.doc.avenue.test.domain.http.clients.PostService;
 import fr.slm.doc.avenue.test.domain.values.Post;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparing;
 
 public class PostLoader {
     private PostService postsService;
@@ -22,8 +23,8 @@ public class PostLoader {
         postsFound.orElseThrow(() -> new PostNotFoundException("Aucun post trouvé"));
         return postsFound.get()
                 .stream()
+                .sorted(comparing(Post::getTitle))
                 .limit(limit)
-                .sorted(Comparator.comparing(Post::getTitle))
                 .collect(Collectors.toList());
     }
 }
