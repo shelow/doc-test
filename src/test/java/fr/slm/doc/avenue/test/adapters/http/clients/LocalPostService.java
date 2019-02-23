@@ -4,18 +4,18 @@ import fr.slm.doc.avenue.test.domain.exceptions.LoadingPostsException;
 import fr.slm.doc.avenue.test.domain.http.clients.PostService;
 import fr.slm.doc.avenue.test.domain.values.Post;
 
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public class LocalPostService implements PostService {
 
-    private Set<Post> posts= new LinkedHashSet<>();
-    private boolean willSuccess;
+    private List<Post> posts= new ArrayList<>();
+    private boolean willSuccess = true;
 
     public LocalPostService() {}
 
-    public void addPosts(LinkedHashSet<Post> posts) {
+    public void addPosts(List<Post> posts) {
         this.posts.addAll(posts);
     }
 
@@ -23,8 +23,8 @@ public class LocalPostService implements PostService {
         this.willSuccess = willSuccess;
     }
 
-    public Optional<Set<Post>> loadPosts() {
+    public Optional<List<Post>> loadPosts() throws LoadingPostsException {
         if(!willSuccess)throw new LoadingPostsException();
-        return Optional.of(posts);
+        return posts.size() == 0 ? Optional.empty() : Optional.of(posts);
     }
 }

@@ -4,14 +4,12 @@ import cucumber.api.DataTable;
 import cucumber.api.java8.En;
 import fr.slm.doc.avenue.test.adapters.http.clients.LocalPostService;
 import fr.slm.doc.avenue.test.domain.exceptions.LoadingPostsException;
+import fr.slm.doc.avenue.test.domain.exceptions.PostNotFoundException;
 import fr.slm.doc.avenue.test.domain.http.clients.PostService;
 import fr.slm.doc.avenue.test.domain.usecases.PostLoader;
 import fr.slm.doc.avenue.test.domain.values.Post;
 
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -28,7 +26,7 @@ public class DownloadSteps implements En {
         PostLoader postsLoader = new PostLoader(postsService);
 
         Given("^following posts when downloading succeeded$", (DataTable givenPosts) -> {
-            LinkedHashSet<Post> posts = new LinkedHashSet<>();
+            List<Post> posts = new ArrayList<>();
             List<Map<String, String>> mappedPosts = givenPosts.asMaps(String.class, String.class);
             mappedPosts.forEach( entry -> addPost(posts, entry));
             ((LocalPostService) postsService).addPosts(posts);
@@ -66,17 +64,17 @@ public class DownloadSteps implements En {
 
     }
 
-    private void addPost(LinkedHashSet<Post> expectedPostsSets, Map<String, String> posts) {
-        expectedPostsSets.add(new Post(Integer.parseInt(posts.get("id")),
+    private void addPost(Collection<Post> expectedPosts, Map<String, String> posts) {
+        expectedPosts.add(new Post(Integer.parseInt(posts.get("id")),
                 Integer.parseInt(posts.get("userId")),
                 posts.get("title"),
                 posts.get("body")));
     }
 
-    private Exception tryer(TryerFunc toTry) {
+    private Throwable tryer(TryerFunc toTry) {
         try {
             toTry.trying();
-        } catch (Exception e) {
+        } catch (LoadingPostsException | PostNotFoundException e) {
             return e;
         }
         return null;
@@ -87,12 +85,12 @@ public class DownloadSteps implements En {
     }
 
     private interface TryerFunc {
-        void trying() throws Exception;
+        void trying() throws PostNotFoundException, LoadingPostsException;
     }
 
     private class AttemptLoadPosts {
         TryerFunc toTry;
-        Set<Post> foundPosts;
-        Exception error;
+        List<Post> foundPosts;
+        Throwable error;
     }
 }
