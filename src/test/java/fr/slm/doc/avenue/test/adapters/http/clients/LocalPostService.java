@@ -19,6 +19,10 @@ public class LocalPostService implements PostService {
         this.posts.addAll(posts);
     }
 
+    public void clearPosts() {
+        this.posts.clear();
+    }
+
     public void shouldSuccess(boolean willSuccess) {
         this.willSuccess = willSuccess;
     }

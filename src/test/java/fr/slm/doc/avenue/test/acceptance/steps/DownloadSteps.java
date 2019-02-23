@@ -53,6 +53,16 @@ public class DownloadSteps implements En {
             }
         });
 
+        When("^the downloading has empty result$", () -> {
+            ((LocalPostService) postsService).clearPosts();
+            attemptLoadPosts.error = tryer(() -> attemptLoadPosts.foundPosts = postsLoader.load(givenParams.limit));
+        });
+
+        Then("^return error : not found$", () -> {
+            assertThat(attemptLoadPosts.foundPosts, is(nullValue()));
+            assertThat(attemptLoadPosts.error, is(instanceOf(PostNotFoundException.class)));
+        });
+
         Then("^return following elements$", (DataTable expectedElements) -> {
             List<Map<String, String>> mappedExpectedposts = expectedElements.asMaps(String.class, String.class);
             assertThat(mappedExpectedposts.size(), is(equalTo(attemptLoadPosts.foundPosts.size())));
@@ -74,9 +84,9 @@ public class DownloadSteps implements En {
                 posts.get("body")));
     }
 
-    private Throwable tryer(TryerFunc toTry) {
+    private Throwable tryer(loadFunc toTry) {
         try {
-            toTry.trying();
+            toTry.load();
         } catch (LoadingPostsException | PostNotFoundException e) {
             return e;
         }
@@ -87,12 +97,12 @@ public class DownloadSteps implements En {
         Integer limit;
     }
 
-    private interface TryerFunc {
-        void trying() throws PostNotFoundException, LoadingPostsException;
+    private interface loadFunc {
+        void load() throws PostNotFoundException, LoadingPostsException;
     }
 
     private class AttemptLoadPosts {
-        TryerFunc toTry;
+        loadFunc toTry;
         List<Post> foundPosts;
         Throwable error;
     }

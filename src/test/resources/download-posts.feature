@@ -40,3 +40,8 @@ Feature: downloading and return firsts posts
     And the downloading "fail"
     Then return error : loading failure
 
+  Scenario: Download empty list of posts
+    Given wanted 50 first posts
+    When the downloading has empty result
+    Then return error : not found
+
