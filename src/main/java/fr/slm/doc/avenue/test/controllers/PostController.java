@@ -1,4 +1,4 @@
-package fr.slm.doc.avenue.test.rest;
+package fr.slm.doc.avenue.test.controllers;
 
 import fr.slm.doc.avenue.test.adapters.exceptions.RestLoadingPostsException;
 import fr.slm.doc.avenue.test.adapters.exceptions.RestPostNotFoundException;
