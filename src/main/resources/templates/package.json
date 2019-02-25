@@ -1,0 +1,32 @@
+{
+  "name": "templates",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=developpement webpack-dev-server --hot",
+    "build": "cross-env NODE_ENV=prod webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "16.8.4",
+    "@types/react-dom": "16.8.2",
+    "cross-env": "5.2.0",
+    "ts-loader": "5.3.3",
+    "tslint": "5.13.0",
+    "tslint-config-standard": "8.0.1",
+    "tslint-loader": "3.5.4",
+    "typescript": "3.3.3333",
+    "webpack": "4.29.5",
+    "webpack-cli": "3.2.3",
+    "webpack-dev-server": "3.2.0"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.9.2",
+    "axios": "^0.18.0",
+    "react": "16.8.3",
+    "react-dom": "16.8.3"
+  }
+}
