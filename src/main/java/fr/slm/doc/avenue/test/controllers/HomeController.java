@@ -16,4 +16,5 @@ public class HomeController {
         LOG.info("open home page");
         return "index.html";
     }
+
 }

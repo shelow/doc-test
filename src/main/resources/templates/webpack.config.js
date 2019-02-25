@@ -6,8 +6,10 @@ let config = {
     entry: "./src/main.tsx",
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "main.js",
-        publicPath: '/dist/'
+        filename: "../../static/dist/main.js",
+    },
+    resolve: {
+        extensions: ['.js', '.ts', '.tsx']
     },
     devtool: "source-map",
     module: {

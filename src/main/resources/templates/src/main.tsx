@@ -1,8 +1,8 @@
-import * as React from 'react';
-import {render} from 'react-dom';
+import * as React from 'react'
+import {render} from 'react-dom'
+import {App} from './components/app'
 
 render(
-    <div>Hello World</div>,
+    <App />,
     document.getElementById('app')
-);
-
+)
