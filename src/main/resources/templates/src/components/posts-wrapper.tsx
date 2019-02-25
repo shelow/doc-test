@@ -14,7 +14,10 @@ export class PostsWrapper extends React.Component<Props> {
 
   render () {
     return (
-            <div>
+            <div style={{
+              fontFamily: 'Roboto, sans-serif',
+              width: '420px',
+              margin: 'auto'}}>
                 {this.props && this.props.posts.map(post => <PostItem item={post} key={post.id} />)}
             </div>
     )
