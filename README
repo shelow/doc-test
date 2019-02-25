@@ -1,0 +1,15 @@
+Development environment
+
+    1 - Use your favorite IDE for loading this current maven project
+    2 - Run src\test\java\fr\slm\doc\avenue\test\acceptance\AllAcceptanceTests.java to generate acceptance test report
+        you will found report on following directory : src\test\resources\report
+    3 - Run project as Spring boot by launching the main class src\main\java\fr\slm\doc\avenue\test\TestApplication.java
+    4 - Open your browser and go to : localhost:8080
+
+
+To Launch project
+
+    1 - build maven project : mvn clean install
+    2 - go to /target directory
+    3 - run java -jar target/XXXXXX.jar
+    4 - Open your browser and go to : localhost:8080
